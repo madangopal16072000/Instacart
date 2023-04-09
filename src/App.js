@@ -31,6 +31,7 @@ import OrderDetails from "./components/Order/OrderDetails";
 import RequireAuth from "./components/User/RequireAuth";
 import Navbar from "./components/layout/Header/Navbar";
 import Header from "./components/layout/Header/Header";
+import NotFound from "./components/Home/NotFound";
 function App() {
   const user = useSelector(selectCurrentUser);
 
@@ -75,7 +76,7 @@ function App() {
         <Route path="/search" element={<Search />} />
         <Route path="/login" element={<LoginSignUp />} />
         <Route path="/cart" element={<Cart />} />
-
+        <Route element={<NotFound />} />
         <Route element={<RequireAuth />}>
           <Route path="/account" element={<Profile />} />
           <Route path="/user/update" element={<UpdateProfile />} />
