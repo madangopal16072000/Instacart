@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const baseUrl = "https://instacart-api.onrender.com/api/v1";
+// const baseUrl = "https://instacart-api.onrender.com/api/v1";
+import { baseUrl } from "../baseUrl";
 
 const localCartData = JSON.parse(localStorage.getItem("cartItems"));
 const localShippingInfo = JSON.parse(localStorage.getItem("shippingInfo")) ?? {
@@ -40,12 +41,9 @@ export const addItemsToCart = createAsyncThunk(
         stock: response.data.product.Stock,
         quantity: body.quantity,
       };
-      console.log(cartData);
-      console.log(response.data);
+
       if (response.data) {
         let localCartData = JSON.parse(localStorage.getItem("cartItems"));
-
-        console.log(localCartData);
 
         if (localCartData) {
           const isItemExist = localCartData.find((item) => {

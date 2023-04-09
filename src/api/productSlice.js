@@ -1,7 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const baseUrl = "https://instacart-api.onrender.com/api/v1";
+// const baseUrl = "https://instacart-api.onrender.com/api/v1";
+import { baseUrl } from "../baseUrl";
 
 // const PRODUCTS_URL = "api/v1/products";
 const initialState = {

@@ -31,6 +31,7 @@ import {
   selectProductDetailsError,
 } from "../../api/productDetailsSlice";
 import { resetReviewStatus } from "../../api/reviewSlice";
+import { selectCurrentUser } from "../../api/authSlice";
 const ProductDetails = () => {
   const [quantity, setQuantity] = useState(1);
   const [open, setOpen] = useState(false);
@@ -46,6 +47,7 @@ const ProductDetails = () => {
   const error = useSelector(selectProductDetailsError);
   const reviewStatus = useSelector(selectReviewStatus);
   const reviewError = useSelector(selectReviewError);
+  const user = useSelector(selectCurrentUser);
 
   const dispatch = useDispatch();
 
@@ -96,7 +98,6 @@ const ProductDetails = () => {
     toast.success("Item added to Cart Successfully");
     dispatch(addItemsToCart({ id: productId, quantity }));
   };
-  console.log(quantity);
 
   const reviewSubmitHandler = () => {
     const myForm = new FormData();
@@ -109,6 +110,7 @@ const ProductDetails = () => {
     toast.success("Review Submitted Successfully");
     setOpen(false);
   };
+
   return (
     <>
       {status === "loading" ? (
@@ -125,7 +127,7 @@ const ProductDetails = () => {
                       <Box>
                         <img
                           className="CarouselImage"
-                          key={i}
+                          key={item.public_id}
                           src={item.url}
                           alt={`${i} slide`}
                         />
@@ -171,9 +173,11 @@ const ProductDetails = () => {
               <div className="detailsBlock-4">
                 Description : <p>{product.description}</p>
               </div>
-              <button className="submitReview" onClick={submitReviewToggle}>
-                Submit Review
-              </button>
+              {user && (
+                <button className="submitReview" onClick={submitReviewToggle}>
+                  Submit Review
+                </button>
+              )}
             </div>
           </div>
 
@@ -193,6 +197,8 @@ const ProductDetails = () => {
               />
 
               <textarea
+                required
+                aria-required
                 className="submitDialogTextArea"
                 cols="30"
                 rows="5"
@@ -212,7 +218,9 @@ const ProductDetails = () => {
           {product.reviews && product.reviews[0] ? (
             <div className="reviews">
               {product.reviews &&
-                product.reviews.map((review) => <ReviewCard review={review} />)}
+                product.reviews.map((review, index) => (
+                  <ReviewCard key={review.user} review={review} />
+                ))}
             </div>
           ) : (
             <p className="noReviews">No Reviews Yet</p>

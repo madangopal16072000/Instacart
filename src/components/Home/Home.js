@@ -25,7 +25,6 @@ function Home() {
     }
 
     if (status === "idle") {
-      console.log("entered");
       dispatch(fetchProducts());
     }
   }, [status, dispatch, error]);
@@ -50,7 +49,7 @@ function Home() {
           <div className="container" id="container">
             {products &&
               products.map((product) => {
-                return <ProductCard product={product} />;
+                return <ProductCard product={product} key={product._id} />;
               })}
           </div>
         </>

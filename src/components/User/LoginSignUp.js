@@ -34,8 +34,6 @@ const LoginSignUp = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
-  console.log(location);
-
   const { name, email, password } = user;
   const dispatch = useDispatch();
   const currUser = useSelector(selectCurrentUser);
@@ -46,9 +44,9 @@ const LoginSignUp = () => {
 
   const redirect = location.search ? "/" + location.search.split("=")[1] : from;
   useEffect(() => {
-    // if (error) {
-    //   toast.error(error);
-    // }
+    if (error) {
+      toast.error(error);
+    }
     if (status === "succeeded") {
       navigate(redirect, { replace: true });
     }
@@ -68,12 +66,16 @@ const LoginSignUp = () => {
 
     const myForm = new FormData();
 
+    if (password.length < 8) {
+      toast.error("Password length should be greater than 8");
+      return;
+    }
     myForm.set("name", name);
     myForm.set("email", email);
     myForm.set("password", password);
     myForm.set("avatar", avatar);
 
-    for (const value of myForm.values()) console.log(value);
+    // for (const value of myForm.values()) console.log(value);
 
     if (myForm) {
       dispatch(register(myForm));

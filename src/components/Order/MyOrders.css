@@ -1,4 +1,5 @@
-.myOrdersPage {
+/* .myOrdersPage {
+  margin-top: 5%;
   width: 100vw;
   max-width: 100%;
   padding: 0 7vmax;
@@ -9,9 +10,15 @@
   left: 0;
   height: 100vh;
   display: flex;
+  justify-content: flex-end;
   flex-direction: column;
-}
+} */
 
+.myOrdersPage {
+  width: 100vw;
+  max-width: 100%;
+  margin-top: 5%;
+}
 #myOrdersHeading {
   text-align: center;
   font: 400 1.2vmax "Roboto";

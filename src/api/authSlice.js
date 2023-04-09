@@ -137,7 +137,7 @@ const authSlice = createSlice({
       })
       .addCase(register.rejected, (state, action) => {
         state.status = "failed";
-        state.error = action.payload;
+        state.error = "Email already Exist";
       })
       .addCase(logout.pending, (state, action) => {
         state.status = "loading";

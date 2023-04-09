@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const baseUrl = "https://instacart-api.onrender.com/api/v1";
+// const baseUrl = "https://instacart-api.onrender.com/api/v1";
+import { baseUrl } from "../baseUrl";
 
 const initialState = {
   orders: [],
@@ -20,8 +21,6 @@ export const fetchMyOrders = createAsyncThunk(
         },
       };
       const response = await axios.get(`${baseUrl}/orders/me`, config);
-
-      console.log(response);
 
       return response.data;
     } catch (error) {

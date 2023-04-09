@@ -24,6 +24,7 @@ import {
   resetOrderStatus,
   selectOrderError,
 } from "../../api/orderSlice";
+
 const Payment = () => {
   const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
   const payBtn = useRef(null);
@@ -67,8 +68,6 @@ const Payment = () => {
         paymentData,
         config
       );
-
-      console.log(data);
       const client_secret = data.client_secret;
 
       if (!stripe || !elements) return;
@@ -129,6 +128,15 @@ const Payment = () => {
     }
   }, [error]);
 
+  // const scriptSrcUrls = [
+  //   "https://m.stripe.network",
+  //   "https://fonts.googleapis.com/",
+  // ];
+  // const styleSrcUrls = [
+  //   "https://m.stripe.network",
+  //   "https://fonts.googleapis.com/",
+  // ];
+  // // const connectSrcUrls = ["https://m.stripe.network"];
   return (
     <>
       <MetaData title="Payment" />

@@ -1,12 +1,5 @@
-
-import Helmet from "react-helmet"
 const MetaData = (props) => {
+  return <title>{props.title}</title>;
+};
 
-    return (
-        <Helmet>
-            <title>{props.title}</title>
-        </Helmet>
-    )
-}
-
-export default MetaData
+export default MetaData;

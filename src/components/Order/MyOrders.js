@@ -2,7 +2,7 @@ import LaunchIcon from "@mui/icons-material/Launch";
 import MetaData from "../layout/MetaData";
 import Loader from "../Loader";
 import { DataGrid } from "@mui/x-data-grid";
-import { Typography } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser } from "../../api/authSlice";
 import {
@@ -87,7 +87,9 @@ const MyOrders = () => {
       {status === "loading" ? (
         <Loader />
       ) : (
-        <div className="myOrdersPage">
+        // <div className="myOrdersPage">
+        <Container>
+          {/* <Typography id="myOrdersHeading">{user.name}'s Orders</Typography> */}
           <DataGrid
             rows={rows}
             columns={columns}
@@ -96,9 +98,7 @@ const MyOrders = () => {
             className="myOrdersTable"
             autoHeight
           ></DataGrid>
-
-          <Typography id="myOrdersHeading">{user.name}'s Orders</Typography>
-        </div>
+        </Container>
       )}
     </>
   );

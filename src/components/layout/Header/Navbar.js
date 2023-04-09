@@ -6,7 +6,6 @@ import Typography from "@mui/material/Typography";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Button from "@mui/material/Button";
-import DrawerComponent from "./DrawerComponent";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import useTheme from "@mui/material/styles/useTheme";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -14,7 +13,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, selectCurrentUser } from "../../../api/authSlice";
 import { toast } from "react-toastify";
-import { Box } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import { useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -28,6 +27,7 @@ const PAGES = [
     url: "/",
   },
   { title: "Products", url: "/products" },
+  { title: "Cart", url: "/cart" },
   { title: "Search", url: "/search" },
   { title: "About", url: "/about" },
 ];
@@ -41,6 +41,7 @@ const Navbar = () => {
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
   const location = useLocation();
   const navigate = useNavigate();
+  const [value, setValue] = useState(0);
 
   const user = useSelector(selectCurrentUser);
   const dispatch = useDispatch();
@@ -58,30 +59,27 @@ const Navbar = () => {
   };
   return (
     <>
-      <AppBar sx={{ background: "rgb(34, 33, 33)" }}>
+      <AppBar sx={{ background: "rgb(34, 33, 33)" }} position="sticky">
         <Toolbar>
-          <ShoppingCartIcon
-            sx={{ color: "white", size: "large", marginRight: 2 }}
-          />
-          <Typography
-            sx={{
-              fontSize: "2rem",
-              paddingLeft: 2,
-              color: "#eb4034",
-            }}
-          >
-            InstaCart
-          </Typography>
           {isMatch ? (
             <>
               {/* <DrawerComponent /> */}
               <Box
                 sx={{
-                  marginLeft: "50%",
                   flexGrow: 1,
                   display: { xs: "flex", md: "none" },
                 }}
               >
+                <Typography
+                  marginRight="auto"
+                  sx={{
+                    fontSize: "2rem",
+                    paddingX: 2,
+                    color: "#eb4034",
+                  }}
+                >
+                  InstaCart
+                </Typography>
                 <IconButton
                   size="large"
                   aria-label="account of current user"
@@ -90,11 +88,7 @@ const Navbar = () => {
                   onClick={handleOpenNavMenu}
                   color="inherit"
                 >
-                  <MenuIcon
-                    sx={{
-                      marginLeft: "auto",
-                    }}
-                  />
+                  <MenuIcon />
                 </IconButton>
                 <Menu
                   id="menu-appbar"
@@ -128,28 +122,59 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              <Tabs
+              <Typography
+                sx={{
+                  fontSize: "2rem",
+                  paddingLeft: 2,
+                  color: "#eb4034",
+                }}
+              >
+                {/* <ShoppingCartIcon
+                  sx={{
+                    color: "white",
+                    size: "large",
+                    paddingX: 1,
+                    color: "tomato",
+                  }}
+                /> */}
+                InstaCart
+              </Typography>
+              {/* <Tabs
                 sx={{ marginLeft: "auto" }}
                 textColor="inherit"
-                value={location.pathname}
+                value={value}
+                onChange={(e, value) => {
+                  setValue(value);
+                }}
                 indicatorColor="secondary"
               >
                 {PAGES.map((page, index) => {
                   return (
-                    <LinkTab
-                      label={page.title}
-                      value={page.url}
-                      key={index}
-                      to={page.url}
-                    />
+                    <LinkTab label={page.title} key={index} to={page.url} />
                   );
                 })}
-              </Tabs>
+              </Tabs> */}
+              <Stack direction="row" spacing={2} ml="auto">
+                {PAGES.map((page, index) => {
+                  return (
+                    <Button
+                      color="inherit"
+                      variant="text"
+                      key={page.title}
+                      onClick={(e) => {
+                        navigate(`${page.url}`);
+                      }}
+                    >
+                      {page.title}
+                    </Button>
+                  );
+                })}
+              </Stack>
               {!user ? (
                 <>
                   <Button
                     sx={{ marginLeft: "auto" }}
-                    variant="contained"
+                    variant="outlined"
                     color="warning"
                     onClick={() => {
                       return navigate("/login");
@@ -159,7 +184,7 @@ const Navbar = () => {
                   </Button>
                   <Button
                     sx={{ marginLeft: "10px" }}
-                    variant="contained"
+                    variant="outlined"
                     color="warning"
                     onClick={() => {
                       return navigate("/login");
@@ -171,7 +196,7 @@ const Navbar = () => {
               ) : (
                 <Button
                   sx={{ marginLeft: "auto" }}
-                  variant="contained"
+                  variant="outlined"
                   color="warning"
                   onClick={logoutHandler}
                 >

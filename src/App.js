@@ -30,6 +30,7 @@ import MyOrders from "./components/Order/MyOrders.js";
 import OrderDetails from "./components/Order/OrderDetails";
 import RequireAuth from "./components/User/RequireAuth";
 import Navbar from "./components/layout/Header/Navbar";
+import Header from "./components/layout/Header/Header";
 function App() {
   const user = useSelector(selectCurrentUser);
 
@@ -64,7 +65,6 @@ function App() {
 
   return (
     <>
-      {/* <Header /> */}
       <Navbar />
       {user && <UserOptions user={user} />}
       <Routes>
