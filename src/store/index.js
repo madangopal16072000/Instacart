@@ -19,7 +19,7 @@ export const store = configureStore({
     productDetails: productDetailsReducer,
     // profileReducer: profileReducer,
   },
-  devTools: true,
+  devTools: false,
 });
 
 export default store;
