@@ -6,13 +6,12 @@ import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import store from "./store";
 import { BrowserRouter } from "react-router-dom";
-
 import { Routes, Route } from "react-router-dom";
 import { disableReactDevTools } from "@fvilers/disable-react-devtools";
 
-// if (process.env.NODE_ENV === "production") {
-//   disableReactDevTools();
-// }
+if (process.env.NODE_ENV === "production") {
+  disableReactDevTools();
+}
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
@@ -20,7 +19,7 @@ root.render(
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          <Route path="*" element={<App />} />
+          <Route path="/*" element={<App />} />
         </Routes>
       </BrowserRouter>
     </Provider>

@@ -3,13 +3,14 @@ import "./Search.css";
 import { useNavigate } from "react-router-dom";
 import MetaData from "../layout/MetaData";
 const Search = () => {
-  const [keyword, setKeyword] = useState();
+  const [keyword, setKeyword] = useState("");
 
   const navigate = useNavigate();
   const searchSubmitHandler = (e) => {
     e.preventDefault();
+    const searchWord = keyword.trim();
 
-    if (keyword?.keyword.trim()) {
+    if (searchWord) {
       navigate(`/products/${keyword}`);
     } else {
       navigate("/products");

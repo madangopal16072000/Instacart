@@ -30,7 +30,6 @@ import MyOrders from "./components/Order/MyOrders.js";
 import OrderDetails from "./components/Order/OrderDetails";
 import RequireAuth from "./components/User/RequireAuth";
 import Navbar from "./components/layout/Header/Navbar";
-import Header from "./components/layout/Header/Header";
 import NotFound from "./components/Home/NotFound";
 import { baseUrl } from "./api/baseUrl";
 function App() {
@@ -38,19 +37,6 @@ function App() {
 
   const [stripeApiKey, setStripeApiKey] = useState("");
 
-  // const getStripeApiKey = async (token) => {
-  //   const response = await axios.get(`${baseUrl}/api/v1/stripeapikey`, {
-  //     headers: {
-  //       authorization: `Bearer ${token}`,
-  //     },
-  //   });
-
-  //   const data = await response.json();
-
-  //   console.log(data);
-
-  //   setStripeApiKey(data.stripeApiKey);
-  // };
   useEffect(() => {
     webfont.load({
       google: {
@@ -59,8 +45,6 @@ function App() {
     });
 
     store.dispatch(fetchProducts());
-
-    //calling stripeapikey
 
     const userData = JSON.parse(localStorage.getItem("user"));
     if (userData) {
