@@ -24,6 +24,7 @@ import {
   resetOrderStatus,
   selectOrderError,
 } from "../../api/orderSlice";
+import { baseUrl } from "../../api/baseUrl";
 
 const Payment = () => {
   const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
@@ -64,7 +65,7 @@ const Payment = () => {
         },
       };
       const { data } = await axios.post(
-        "/api/v1/payment/process",
+        `${baseUrl}/payment/process`,
         paymentData,
         config
       );
@@ -128,15 +129,6 @@ const Payment = () => {
     }
   }, [error]);
 
-  // const scriptSrcUrls = [
-  //   "https://m.stripe.network",
-  //   "https://fonts.googleapis.com/",
-  // ];
-  // const styleSrcUrls = [
-  //   "https://m.stripe.network",
-  //   "https://fonts.googleapis.com/",
-  // ];
-  // // const connectSrcUrls = ["https://m.stripe.network"];
   return (
     <>
       <MetaData title="Payment" />

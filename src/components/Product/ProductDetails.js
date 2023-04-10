@@ -191,7 +191,7 @@ const ProductDetails = () => {
             <DialogTitle>Submit Review</DialogTitle>
             <DialogContent className="submitDialog">
               <Rating
-                onChange={(e) => setRating(e.target.value)}
+                onChange={(e) => setRating(Number(e.target.value))}
                 value={rating}
                 size="large"
               />
@@ -219,7 +219,7 @@ const ProductDetails = () => {
             <div className="reviews">
               {product.reviews &&
                 product.reviews.map((review, index) => (
-                  <ReviewCard key={review.user} review={review} />
+                  <ReviewCard key={review._id} review={review} />
                 ))}
             </div>
           ) : (

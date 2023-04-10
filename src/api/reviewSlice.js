@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 // const baseUrl = "https://instacart-api.onrender.com/api/v1";
-import { baseUrl } from "../baseUrl";
+import { baseUrl } from "./baseUrl";
 
 const localData = JSON.parse(localStorage.getItem("user"));
 

@@ -1,6 +1,6 @@
 import axios from "axios";
 // const baseUrl = "https://instacart-api.onrender.com/api/v1";
-import { baseUrl } from "../baseUrl";
+import { baseUrl } from "./baseUrl";
 const localData = JSON.parse(localStorage.getItem("user"));
 
 const loadUser = async () => {
@@ -52,7 +52,6 @@ const logout = async () => {
   return response.data;
 };
 const updateProfileService = async (data) => {
-  console.log(localData);
   const response = await axios.put(`${baseUrl}/user/update`, data, {
     headers: {
       authorization: `Bearer ${localData.data.token}`,

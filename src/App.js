@@ -32,20 +32,25 @@ import RequireAuth from "./components/User/RequireAuth";
 import Navbar from "./components/layout/Header/Navbar";
 import Header from "./components/layout/Header/Header";
 import NotFound from "./components/Home/NotFound";
+import { baseUrl } from "./api/baseUrl";
 function App() {
   const user = useSelector(selectCurrentUser);
 
   const [stripeApiKey, setStripeApiKey] = useState("");
 
-  const getStripeApiKey = async (token) => {
-    const { data } = await axios.get("/api/v1/stripeapikey", {
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
-    });
+  // const getStripeApiKey = async (token) => {
+  //   const response = await axios.get(`${baseUrl}/api/v1/stripeapikey`, {
+  //     headers: {
+  //       authorization: `Bearer ${token}`,
+  //     },
+  //   });
 
-    setStripeApiKey(data.stripeApiKey);
-  };
+  //   const data = await response.json();
+
+  //   console.log(data);
+
+  //   setStripeApiKey(data.stripeApiKey);
+  // };
   useEffect(() => {
     webfont.load({
       google: {
@@ -60,7 +65,19 @@ function App() {
     const userData = JSON.parse(localStorage.getItem("user"));
     if (userData) {
       store.dispatch(setCredentials(userData.data));
-      getStripeApiKey(userData.data.token);
+
+      const token = userData.data.token;
+
+      axios
+        .get(`${baseUrl}/stripeapikey`, {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => setStripeApiKey(response.data.stripeApiKey))
+        .catch((error) => {
+          console.log(error);
+        });
     }
   }, []);
 
