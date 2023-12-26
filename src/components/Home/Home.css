@@ -1,5 +1,5 @@
 .banner {
-  background-image: linear-gradient(to right, #635dc0, #3027ae);
+  background-image: url("../../images/home.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -20,7 +20,6 @@
 
 .banner > p {
   font: 300 1.4vmax "Lucida Sans";
-  margin-top: 20vh;
 }
 
 .banner > a > button {
@@ -40,14 +39,12 @@
 }
 
 .banner::after {
-  content: "";
   width: 100vw;
   height: 100vmin;
   background-color: #ffffff;
-  position: static;
+  position: absolute;
   top: 0%;
   left: 0;
-  clip-path: polygon(100% 1%, 0 100%, 100% 100%);
   max-width: 100%;
 }
 

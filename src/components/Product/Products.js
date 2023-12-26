@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProductCard from "../Home/ProductCard";
-import Loader from "../Loader";
+import Loader from "../layout/Loader";
 import {
   getProductsError,
   getProductsStatus,
@@ -16,6 +16,10 @@ import Typography from "@mui/material/Typography";
 import MetaData from "../layout/MetaData";
 
 const categories = [
+  "Men's Clothing",
+  "Women's Clothing",
+  "Jewelary",
+  "Electronics",
   "Laptop",
   "Footwear",
   "Button",
@@ -42,19 +46,22 @@ function Products() {
   const productsData = useSelector(selectAllProducts);
   const products = productsData.products;
 
-  const { keyword } = useParams();
+  let { keyword } = useParams();
+  const prevKeyword = useRef(null);
+
   const productsCount = productsData.productsCount;
   const resultPerPage = productsData.resultPerPage;
   const filteredProductsCount = productsData.filteredProductsCount;
 
+  let isKeywordChanged = keyword && prevKeyword.current !== keyword;
+  let isDataChanged =
+    isPageChanged || isPriceChanged || isCategoryChanged || isRatingChanged;
   useEffect(() => {
     if (error) {
       return error;
     }
-    let isDataChanged =
-      isPageChanged | isPriceChanged | isCategoryChanged | isRatingChanged;
 
-    if (status === "idle" || isDataChanged) {
+    if (status === "idle" || isDataChanged || isKeywordChanged) {
       const Args = {
         keyword: keyword,
         currentPage: currentPage,
@@ -67,6 +74,7 @@ function Products() {
       setPriceChanged(false);
       setIsCategoryChanged(false);
       setIsRatingChanged(false);
+      prevKeyword.current = keyword;
     }
   }, [
     dispatch,
@@ -81,6 +89,9 @@ function Products() {
     isRatingChanged,
     price,
     category,
+    isDataChanged,
+    prevKeyword,
+    isKeywordChanged,
   ]);
 
   const setCurrentPageNo = (event) => {

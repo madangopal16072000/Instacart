@@ -59,7 +59,7 @@ const Navbar = () => {
   };
   return (
     <>
-      <AppBar sx={{ background: "rgb(34, 33, 33)" }} position="sticky">
+      <AppBar sx={{ background: "rgb(34, 33, 33)" }} position="static">
         <Toolbar>
           {isMatch ? (
             <>
@@ -122,38 +122,39 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              <Typography
+              {/* <Typography
                 sx={{
                   fontSize: "2rem",
                   paddingLeft: 2,
                   color: "#eb4034",
                 }}
               >
-                {/* <ShoppingCartIcon
+                <ShoppingCartIcon
                   sx={{
                     color: "white",
                     size: "large",
                     paddingX: 1,
                     color: "tomato",
                   }}
-                /> */}
+                />
                 InstaCart
-              </Typography>
-              {/* <Tabs
-                sx={{ marginLeft: "auto" }}
-                textColor="inherit"
-                value={value}
-                onChange={(e, value) => {
-                  setValue(value);
+              </Typography> */}
+              <Button
+                sx={{
+                  fontSize: "1.5rem",
+                  color: "tomato",
+                  textTransform: "none",
                 }}
-                indicatorColor="secondary"
               >
-                {PAGES.map((page, index) => {
-                  return (
-                    <LinkTab label={page.title} key={index} to={page.url} />
-                  );
-                })}
-              </Tabs> */}
+                <ShoppingCartIcon
+                  sx={{
+                    size: "large",
+                    paddingX: 1,
+                    color: "tomato",
+                  }}
+                />
+                InstaCart
+              </Button>
               <Stack direction="row" spacing={2} ml="auto">
                 {PAGES.map((page, index) => {
                   return (

@@ -5,12 +5,11 @@ import LockOpenIcon from "@mui/icons-material/LockOpen";
 import "./LoginSignUp.css";
 import Face3 from "@mui/icons-material/Face3";
 import Profile from "../../images/Profile.png";
-import Loader from "../Loader";
+import Loader from "../layout/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import {
   login,
   register,
-  selectCurrentUser,
   selectError,
   selectStatus,
 } from "../../api/authSlice";
@@ -36,11 +35,10 @@ const LoginSignUp = () => {
 
   const { name, email, password } = user;
   const dispatch = useDispatch();
-  const currUser = useSelector(selectCurrentUser);
   const status = useSelector(selectStatus);
   const error = useSelector(selectError);
-  const canLogin =
-    [loginEmail, loginPassword].every(Boolean) && status === "idle";
+  // let canLogin =
+  //   [loginEmail, loginPassword].every(Boolean) && status === "idle";
 
   const redirect = location.search ? "/" + location.search.split("=")[1] : from;
   useEffect(() => {
@@ -55,10 +53,10 @@ const LoginSignUp = () => {
   const loginSubmit = (e) => {
     e.preventDefault();
 
-    if (canLogin) {
-      dispatch(login({ email: loginEmail, password: loginPassword }));
-      navigate(from, { replace: true });
-    }
+    // if (canLogin) {
+    dispatch(login({ email: loginEmail, password: loginPassword }));
+    navigate(from, { replace: true });
+    // }
   };
 
   const registerSubmit = (e) => {
@@ -70,6 +68,7 @@ const LoginSignUp = () => {
       toast.error("Password length should be greater than 8");
       return;
     }
+
     myForm.set("name", name);
     myForm.set("email", email);
     myForm.set("password", password);

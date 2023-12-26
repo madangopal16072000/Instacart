@@ -1,5 +1,5 @@
 import "./UpdateProfile.css";
-import Loader from "../Loader";
+import Loader from "../layout/Loader";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import "./LoginSignUp.css";
 import Face3 from "@mui/icons-material/Face3";

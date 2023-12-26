@@ -10,7 +10,7 @@ import {
   selectAllProducts,
 } from "../../api/productSlice";
 import { useEffect } from "react";
-import Loader from "../Loader";
+import Loader from "../layout/Loader";
 
 function Home() {
   const dispatch = useDispatch();
@@ -46,6 +46,7 @@ function Home() {
               </button>
             </a>
           </div>
+          <h2 className="homeHeading">Featured Products</h2>
           <div className="container" id="container">
             {products &&
               products.map((product) => {

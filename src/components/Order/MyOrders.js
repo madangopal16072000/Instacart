@@ -1,20 +1,19 @@
 import LaunchIcon from "@mui/icons-material/Launch";
 import MetaData from "../layout/MetaData";
-import Loader from "../Loader";
+import Loader from "../layout/Loader";
 import { DataGrid } from "@mui/x-data-grid";
-import { Container, Typography } from "@mui/material";
+import { Container } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser } from "../../api/authSlice";
 import {
   fetchMyOrders,
-  resetMyOrdersStatus,
   selectMyOrders,
   selectMyOrdersError,
   selectMyOrdersStatus,
 } from "../../api/myOrdersSlice";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./MyOrders.css";
 const MyOrders = () => {
   const dispatch = useDispatch();
@@ -22,7 +21,6 @@ const MyOrders = () => {
   const orders = useSelector(selectMyOrders);
   const status = useSelector(selectMyOrdersStatus);
   const error = useSelector(selectMyOrdersError);
-  const location = useLocation();
 
   const columns = [
     { field: "id", headerName: "Order ID", minWidth: 300, flex: 1 },

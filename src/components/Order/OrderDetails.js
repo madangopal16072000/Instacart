@@ -9,7 +9,7 @@ import {
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
-import Loader from "../Loader";
+import Loader from "../layout/Loader";
 import MetaData from "../layout/MetaData";
 import { Typography } from "@mui/material";
 import { Link } from "react-router-dom";

@@ -7,6 +7,13 @@ import orderReducer from "../api/orderSlice";
 import myOrdersReducer from "../api/myOrdersSlice";
 import reviewReducer from "../api/reviewSlice";
 import productDetailsReducer from "../api/productDetailsSlice";
+import adminProductsReducer from "../api/adminProductsSlice";
+import adminProductReducer from "../api/adminProductSlice";
+import adminProductDetailsReducer from "../api/adminProductDetails";
+import adminOrdersReducer from "../api/adminOrdersSlice";
+import adminOrderDetailsReducer from "../api/adminOrderDetailsSlice";
+import adminUsersReducer from "../api/adminUsersSlice";
+import adminUserDetailsReducer from "../api/adminUserDetailsSlice";
 
 export const store = configureStore({
   reducer: {
@@ -17,9 +24,15 @@ export const store = configureStore({
     myOrders: myOrdersReducer,
     review: reviewReducer,
     productDetails: productDetailsReducer,
-    // profileReducer: profileReducer,
+    adminProducts: adminProductsReducer,
+    adminProduct: adminProductReducer,
+    adminProductDetails: adminProductDetailsReducer,
+    adminOrders: adminOrdersReducer,
+    adminOrderDetails: adminOrderDetailsReducer,
+    adminUsers: adminUsersReducer,
+    adminUserDetails: adminUserDetailsReducer,
   },
-  devTools: false,
+  devTools: true,
 });
 
 export default store;

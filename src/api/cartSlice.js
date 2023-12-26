@@ -32,7 +32,7 @@ export const addItemsToCart = createAsyncThunk(
   async (body, thunkAPI) => {
     try {
       const response = await axios.get(`${baseUrl}/product/${body.id}`);
-
+      console.log(response);
       const cartData = {
         product: response.data.product._id,
         name: response.data.product.name,

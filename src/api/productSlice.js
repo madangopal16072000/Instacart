@@ -30,7 +30,6 @@ export const fetchProducts = createAsyncThunk(
       link = `${baseUrl}/products?page=${currentPage}&keyword=${keyword}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}&category=${category}`;
     }
     const response = await axios.get(link);
-
     return response.data;
   }
 );

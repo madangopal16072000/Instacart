@@ -8,7 +8,7 @@ import MetaData from "../layout/MetaData";
 import { useEffect, useState } from "react";
 import { addItemsToCart } from "../../api/cartSlice";
 import { toast } from "react-toastify";
-import Loader from "../Loader";
+import Loader from "../layout/Loader";
 import {
   newReview,
   selectReviewError,

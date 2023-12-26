@@ -32,6 +32,14 @@ import RequireAuth from "./components/User/RequireAuth";
 import Navbar from "./components/layout/Header/Navbar";
 import NotFound from "./components/Home/NotFound";
 import { baseUrl } from "./api/baseUrl";
+import Dashboard from "./components/admin/Dashboard";
+import ProductList from "./components/admin/ProductList";
+import NewProduct from "./components/admin/NewProduct";
+import UpdateProduct from "./components/admin/UpdateProduct";
+import ProcessOrder from "./components/admin/ProcessOrder";
+import OrderList from "./components/admin/OrderList";
+import UsersList from "./components/admin/UsersList";
+import UpdateUser from "./components/admin/UpdateUser";
 function App() {
   const user = useSelector(selectCurrentUser);
 
@@ -86,6 +94,14 @@ function App() {
           <Route path="/success" element={<OrderSuccess />} />
           <Route path="/orders" element={<MyOrders />} />
           <Route path="/order/:id" element={<OrderDetails />} />
+          <Route path="/admin/dashboard" element={<Dashboard />} />
+          <Route path="/admin/products" element={<ProductList />} />
+          <Route path="/admin/product" element={<NewProduct />} />
+          <Route path="/admin/product/:id" element={<UpdateProduct />} />
+          <Route path="/admin/orders" element={<OrderList />} />
+          <Route path="/admin/order/:id" element={<ProcessOrder />} />
+          <Route path="/admin/users" element={<UsersList />} />
+          <Route path="/admin/user/:id" element={<UpdateUser />} />
         </Route>
       </Routes>
       {stripeApiKey && (
